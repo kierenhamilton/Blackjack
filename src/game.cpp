@@ -4,9 +4,16 @@
 #include <iostream>
 #include <limits>
 
+#ifdef _WIN32
+    #include <windows.h>
+    #define CLEAR "cls"
+#else
+    #define CLEAR "clear"
+#endif
+
 void user_input(int &wager, const int &money) {
 
-  system("clear");
+  system(CLEAR);
   std::cout << "You have £" + std::to_string(money) + "\n";
   std::cout << "how much would you like to wager: ";
 
@@ -34,7 +41,7 @@ void user_input(int &wager, const int &money) {
 
 void game(int &wager) {
 
-  system("clear");
+  system(CLEAR);
   std::vector<Card> deck{};
   init_deck(deck);
   shuffle(deck);
@@ -58,7 +65,7 @@ void game(int &wager) {
     if (input == "stand")
       break;
     hit(player, deck);
-    system("clear");
+    system(CLEAR);
     std::cout << "DEALER:\n";
     display(dealer.hand);
     std::cout << "\nYOU:\n";
